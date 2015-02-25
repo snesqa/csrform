@@ -1,0 +1,163 @@
+<?php 
+    // variables for sending process
+    $to = 'snezana.ilic@outlook.com';
+    $subject = 'CSR nyhedsbrev';
+    $header = "From: csr@scandic.dk\r\n"; // \r == return
+	$header .= "Content-type: text/plain; charset=utf-8"; 
+    $authenticate = null; // no authentication
+	
+    $mailSent = false; // set to false
+    
+    if(isset($_POST['send'])){ // if form is submittet, send following data
+		$content= "Information from form: " . $_POST['name'] . ", " . $_POST['email'];
+        $mailSent = mail($to, $subject, $content, $header, $authenticate);   
+    }
+?>
+<!DOCTYPE Html>
+<html>
+    <head>
+        <title>Scandic CSR - Stop madspild</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/mediaqueary.css">
+        <link rel="stylesheet" type="text/css" href="css/medialarge.css" media="screen and (min-width:600px)">
+        <link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
+        <script src="js/jquery.bxslider.js"></script>
+        <script src="js/jquery.bxslider.min.js"></script>
+        <script type="text/javascript">
+				// this script is for the browser validation -jquery plugin 
+                $(document).ready(function() {
+                    var myLanguage = { // http://formvalidator.net/#localization change error msg to danish
+                        requiredFields : 'Indtast venligst navn', // for text field
+                        badEmail : 'Indtast venligst email',  // for email field
+                    }
+                    
+                    $.validate({language : myLanguage}); // calls the validate function
+					
+					
+				// this script is for the bx slider http://bxslider.com/
+					$('.bxslider').bxSlider({ 
+                        auto: true, 
+                  		autoControls: true
+                      });
+                });       
+        </script>
+       </head>
+    <body>
+        <div id="wrapper">
+            <header><img src="images/headerimg.jpg" width="1000" alt=""></header>
+            <div id="subheader"><img src="images/logo.jpg" alt="scandic logo" height="40"><span id="header-txt">DELTAG I KAMPEN OM RESOURCESPILD</span></div>
+            <!--SLIDER SECTION-->
+            <div id="news-wrapper">         
+                <div id="sliderBox">
+                    <ul class="bxslider">
+                    	<li><img src="images/slider_1.jpg" alt="" /></li>
+                        <li><img src="images/slider_2.jpg" alt="" /></li>
+                        <li><img src="images/slider_3.jpg" alt="" /></li>
+                        <li><img src="images/slider_4.jpg" alt="" /></li>
+                        <li><img src="images/slider_5.jpg" alt="" /></li>
+                        <li><img src="images/slider_6.jpg" alt="" /></li>
+                    </ul>
+            	</div>
+			</div>
+		<!--SLIDER SECTION END-->
+        
+        <!--NEWS LETTER SECTION-->
+            <div id="newsletter">
+            <p>Tilmed dig vores nyhedsbrev og hold dig opdateret og få nyheder om hvad du kan gøre for at mindske madsplid.</p>
+
+                                         <!--http://www.w3schools.com/php/php_form_validation.asp -->
+                                         <!--htmlspecialchars prevents injection of unwanted scripts in the URL-->
+        <form name="contact" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <p><label for="name">Navn &#42;</label></p>
+            <p><input type="text" id="name" name="name" data-validation="required"></p>
+            <p><label for="email">Email &#42;</label></p>
+            <p><input type="text" id="email" name="email" data-validation="email"></p>
+            <p><input  type="submit" name="send" value="Tilmeld nyhedsbrev"></p>
+            <span>Påkrævet felt &#42;</span>
+        </form>
+  		<!--NEWS LETTER SECTION END-->
+        
+        <!--MAIN TEXT SECTION-->
+    </div>
+    <div id="main">
+    <section id="paragraph-1">
+        <h1>Scandic vokser - vores fodaftryk bliver mindre</h1>
+		
+<p>
+Ingen kan længere se bort fra, at vores planet ikke har det godt. Igennem de sidste 15 år har vi i vores daglige arbejde på Scandic gjort, hvad vi kunne for at bidrage til en mere bæredygtig verden. Et af vores første tiltag var at opfordre vores hotelgæster til at overveje at genbruge håndklæderne i forbindelse med flere på hinanden følgende overnatninger. 
+</p>
+<p>I de første mange år var vores CSR indsats fokuseret omkring miljøet:</p>
+
+    <img src="images/fisk.jpg" width="255" height="228" alt="foto af fisk tilberedt på tallerken"/>
+<ul>
+    <li><span class="check">&check;</span>Vand på genopfyldelige glasflasker lavet af genbrugsglas</li>
+    <li><span class="check">&check;</span>Nye sæbepumper som genererer mindre spild</li>
+    <li><span class="check">&check;</span>Lav-energi pærer</li>
+    <li><span class="check">&check;</span>Eco- certificerede rengøringsmidler</li>
+    <li><span class="check">&check;</span>Krav og retningslinier til bortskaffelse af gamle møbler</li>
+    <li><span class="check">&check;</span>Krav og retningslinier til bortskaffelse af affald</li>
+    <li><span class="check">&check;</span>Elektricitet fra vedvarende energi</li>
+    <li><span class="check">&check;</span>Genbrugspapir</li>
+    <li><span class="check">&check;</span>Bedre kontrol med madspild</li>
+    
+</ul>
+<p>
+Ovenstående er blot eksempler på vores indsats for et bedre miljø. 
+Samlet set har vores indsats på miljøområdet haft en overordentlig stor effekt - vores fodaftryk bliver mindre og mindre: 
+andelen af usorteret affald på vores hoteller er faldet med 52% siden 1996! 
+Det er vi meget stolte af.
+</p>
+</section>
+
+<section id="paragraph-2">
+<img src="images/refood.jpg" width="170" height="183" alt="refood logo"/>
+<h1>CSR indsatsen udvides</h1>
+
+<p>
+Sidenhen er vores CSR indsats udvidet til at omhandle mange andre områder end miljøet, vi:</p> 
+<ul>
+    <li><span class="check">&check;</span>indretter vores hoteller under hensyntagen til de, der har særlige behov på grund af fysiske funktionsnedsættelser.</li>
+    <li><span class="check">&check;</span>leverer vi gratis bæredygtig kaffe til de forældre, der tager nattevagten som <a href="http://www.natteravnene.dk/" target="_blank">Natteravne</a>
+    </li>
+    <li><span class="check">&check;</span>vægter sundhed højt med moderne, veludstyrede motionsrum og sund mad i vores restauranter</li>
+    <li><span class="check">&check;</span>tilbyder mad og drikke til personer med særlige behov (laktosefri produkter, glutenfri produkter, fedtfattige produkter o.s.v.)</li>
+</ul>
+<p>Vi hos Scandic er vores samfundsansvar bevidst, og ovenstående eksempler viser bredden i den indsats, vi hver dag yder for at gøre en forskel, der kan mærkes.</p>
+</section>
+<section id="paragraph-3">
+<h1>Fokus på mandspild - Fra Doggybag til Goodiebag</h1>
+<img src="images/stopspild.jpg" width="110" height="98" alt="stop spild af mad logo"/>
+<p>
+Vi kan hele tiden blive bedre, og vi får hele tiden nye idéer til, hvordan vi kan gøre det lidt bedre i dag end i går. 
+</p>
+<p>
+I 2015 er vores nye fokusområde at gøre en ekstra indsats for at mindske mandspild. I samarbejde med foreningen <a href="http://www.stopspildafmad.dk" target="_blank">STOP SPILD AF MAD</a> og Unilever introducerer vi doggybags i vores restauranter - vi synes simpelthen vores mad er for god til at gå til spilde.
+</p>
+<p>
+Udover at mindske madspild i vores restauranter håber vi også, at vi med dette tiltag kan være med til at sætte fokus på, at vi hver især med selv en lille indsats kan være med til at gøre en stor forskel.
+</p>
+<p>
+Så udover at mindske madspildet som gæst hos Scandic, håber vi kampagnen kan sætte tanker igang hos vores gæster, så de også tænker over, hvad de smider ud andre steder og i andre sammenhænge også hjemme i deres eget køkken.
+</p>
+
+<p>
+Doggybags introduceres i første omgang på vores danske hoteller, med planlagt udrulning på samtlige Scandic hoteller inden udgangen af 2015.    
+</p>
+<p>
+Her kan du få meget mere viden om alle vores <a href="http://www.scandichotels.dk/settings/Sidfot/About-us-Container-/Social-ansvarlighed" target="_blank">CSR tiltag</a>.
+</p>
+<p>
+Du kan også melde dig til vores nyhedsbrev, og være blandt de første til at høre om vores nyeste tiltag inden for Social Ansvarlighed, du skal blot udfylde din email-adresse i feltet ovenfor.
+</p>
+</section>
+    </div>
+    <!--MAIN TEXT SECTION END-->
+        <footer><img src="images/scandicfooter.png" alt="footer image"></footer>
+    </div> <!--WRAPPER END-->
+    </body>
+
+</html>
